@@ -1,0 +1,56 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package mobilitydevice;
+
+/**
+ *
+ * @author danie
+ */
+public class MyQueue<T> implements QueueInterface<T> {
+    
+    private MyLinkedList<T> queueList;
+
+    public MyQueue() {
+        queueList = new MyLinkedList<>();
+    }
+
+    
+    @Override
+    public void enqueue(T item) {
+        queueList.add(item);
+    }
+
+    
+    @Override
+    public T dequeue() {
+        if (isEmpty()) {
+            return null;
+        }
+
+        T front = queueList.get(0);
+        queueList.delete(0);
+        return front;
+    }
+
+    
+    @Override
+    public T peek() {
+        if (isEmpty()) {
+            return null;
+        }
+        return queueList.get(0);
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return queueList.isEmpty();
+    }
+
+    @Override
+    public int size() {
+        return queueList.size();
+    }
+    
+}
