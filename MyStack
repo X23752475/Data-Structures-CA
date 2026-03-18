@@ -1,0 +1,60 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package mobilitydevice;
+
+/**
+ *
+ * @author danie
+ */
+public class MyStack<T> implements StackInterface<T> {
+    
+    private MyLinkedList<T> stackList;
+
+    // Constructor
+    public MyStack() {
+        stackList = new MyLinkedList<>();
+    }
+
+    
+    @Override
+    public void push(T item) {
+        stackList.add(item);
+    }
+
+    
+    @Override
+    public T pop() {
+        if (isEmpty()) {
+            return null;
+        }
+
+        int topIndex = stackList.size() - 1;
+        T item = stackList.get(topIndex);
+        stackList.delete(topIndex);
+
+        return item;
+    }
+
+    
+    @Override
+    public T peek() {
+        if (isEmpty()) {
+            return null;
+        }
+
+        return stackList.get(stackList.size() - 1);
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return stackList.isEmpty();
+    }
+
+    @Override
+    public int size() {
+        return stackList.size();
+    }
+    
+}
