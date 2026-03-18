@@ -1,0 +1,119 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package mobilitydevice;
+
+/**
+ *
+ * @author danie
+ */
+public class MyLinkedList<T> implements ListInterface<T> {
+    
+     
+    private class Node {
+        T data;
+        Node next;
+
+        Node(T data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    private Node head;
+    private int count;
+
+    // Constructor
+    public MyLinkedList() {
+        head = null;
+        count = 0;
+    }
+
+    
+    @Override
+    public void add(T item) {
+        Node newNode = new Node(item);
+
+        if (head == null) {
+            head = newNode;
+        } else {
+            Node current = head;
+
+            while (current.next != null) {
+                current = current.next;
+            }
+
+            current.next = newNode;
+        }
+
+        count++;
+    }
+
+    
+    @Override
+    public T get(int index) {
+        checkIndex(index);
+
+        Node current = head;
+
+        for (int i = 0; i < index; i++) {
+            current = current.next;
+        }
+
+        return current.data;
+    }
+
+    
+    @Override
+    public void update(int index, T item) {
+        checkIndex(index);
+
+        Node current = head;
+
+        for (int i = 0; i < index; i++) {
+            current = current.next;
+        }
+
+        current.data = item;
+    }
+
+    
+    @Override
+    public void delete(int index) {
+        checkIndex(index);
+
+        if (index == 0) {
+            head = head.next;
+        } else {
+            Node current = head;
+
+            for (int i = 0; i < index - 1; i++) {
+                current = current.next;
+            }
+
+            current.next = current.next.next;
+        }
+
+        count--;
+    }
+
+    
+    @Override
+    public int size() {
+        return count;
+    }
+
+    
+    @Override
+    public boolean isEmpty() {
+        return count == 0;
+    }
+
+    
+    private void checkIndex(int index) {
+        if (index < 0 || index >= count) {
+            throw new IndexOutOfBoundsException("Invalid index: " + index);
+        }
+    }
+}
